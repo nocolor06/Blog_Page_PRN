@@ -12,8 +12,8 @@ namespace PRN211_BlogSystem
 			name: "default",
 			pattern: "{controller=Home}/{action=HomePage}/{id?}"
 			);
-
-			app.Run();
+            app.UseStaticFiles();
+            app.Run();
 		}
 	}
 }
