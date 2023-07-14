@@ -1,12 +1,12 @@
-drop database PRN211_BlogSystem
-create database PRN211_BlogSystem
-use PRN211_BlogSystem
+-- create database PRN211_BlogSystem
 
+use PRN211_BlogSystem
 create table [User](
 	username varchar(100) not null,
 	[password] varchar(100) not null,
 	displayName nvarchar(255) not null,
 	email nvarchar(100) not null,
+	dob date not null,
 	phoneNumber nvarchar(100) not null,
 	registerAt datetime not null,
 	lastLogin datetime not null,
@@ -83,3 +83,4 @@ create table Comment(
 	createAt datetime not null,
 	constraint PK_Comment primary key(id)
 )
+

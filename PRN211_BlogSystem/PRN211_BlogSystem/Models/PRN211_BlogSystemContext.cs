@@ -54,9 +54,16 @@ namespace PRN211_BlogSystem.Models
                     .HasColumnType("datetime")
                     .HasColumnName("createAt");
 
+                entity.Property(e => e.Image)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("image");
+
                 entity.Property(e => e.MetaTitle)
                     .HasMaxLength(255)
                     .HasColumnName("metaTitle");
+
+                entity.Property(e => e.NoView).HasColumnName("noView");
 
                 entity.Property(e => e.Summary)
                     .HasMaxLength(255)
@@ -222,6 +229,10 @@ namespace PRN211_BlogSystem.Models
                 entity.Property(e => e.DisplayName)
                     .HasMaxLength(255)
                     .HasColumnName("displayName");
+
+                entity.Property(e => e.Dob)
+                    .HasColumnType("date")
+                    .HasColumnName("dob");
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(100)
