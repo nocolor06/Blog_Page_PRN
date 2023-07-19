@@ -5,14 +5,19 @@ namespace PRN211_BlogSystem
 		public static void Main(string[] args)
 		{
 			var builder = WebApplication.CreateBuilder(args);
-			builder.Services.AddControllersWithViews();
-			var app = builder.Build();
 
-			app.MapControllerRoute(
+			builder.Services.AddControllersWithViews();
+            builder.Services.AddSession();
+
+            var app = builder.Build();
+            app.MapControllerRoute(
 			name: "default",
 			pattern: "{controller=Home}/{action=HomePage}/{id?}"
 			);
+
+            app.UseSession();
             app.UseStaticFiles();
+
             app.Run();
 		}
 	}

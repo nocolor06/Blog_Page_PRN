@@ -21,18 +21,14 @@ namespace PRN211_BlogSystem.Models
         public virtual DbSet<Comment> Comments { get; set; } = null!;
         public virtual DbSet<Feature> Features { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
-        public virtual DbSet<Tag> Tags { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var builder = new ConfigurationBuilder()
-                                              .SetBasePath(Directory.GetCurrentDirectory())
-                                              .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                IConfigurationRoot configuration = builder.Build();
-                optionsBuilder.UseSqlServer(configuration.GetConnectionString("MyCnn"));
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("server=DESKTOP-UME35DF;database=PRN211_BlogSystem;uid=giangpt;pwd=123;TrustServerCertificate=True;");
             }
         }
 
@@ -48,6 +44,8 @@ namespace PRN211_BlogSystem.Models
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("authorName");
+
+                entity.Property(e => e.CategoryId).HasColumnName("categoryId");
 
                 entity.Property(e => e.Content)
                     .HasColumnType("text")
@@ -84,41 +82,13 @@ namespace PRN211_BlogSystem.Models
                     .WithMany(p => p.Blogs)
                     .HasForeignKey(d => d.AuthorName)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Blog__authorName__31EC6D26");
+                    .HasConstraintName("FK__Blog__authorName__33D4B598");
 
-                entity.HasMany(d => d.Categories)
+                entity.HasOne(d => d.Category)
                     .WithMany(p => p.Blogs)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "BlogCategory",
-                        l => l.HasOne<Category>().WithMany().HasForeignKey("CategoryId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__Blog_Cate__categ__3D5E1FD2"),
-                        r => r.HasOne<Blog>().WithMany().HasForeignKey("BlogId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__Blog_Cate__blogI__3C69FB99"),
-                        j =>
-                        {
-                            j.HasKey("BlogId", "CategoryId");
-
-                            j.ToTable("Blog_Category");
-
-                            j.IndexerProperty<int>("BlogId").HasColumnName("blogId");
-
-                            j.IndexerProperty<int>("CategoryId").HasColumnName("categoryId");
-                        });
-
-                entity.HasMany(d => d.Tags)
-                    .WithMany(p => p.Blogs)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "BlogTag",
-                        l => l.HasOne<Tag>().WithMany().HasForeignKey("TagId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__Blog_Tag__tagId__37A5467C"),
-                        r => r.HasOne<Blog>().WithMany().HasForeignKey("BlogId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__Blog_Tag__blogId__36B12243"),
-                        j =>
-                        {
-                            j.HasKey("BlogId", "TagId");
-
-                            j.ToTable("Blog_Tag");
-
-                            j.IndexerProperty<int>("BlogId").HasColumnName("blogId");
-
-                            j.IndexerProperty<int>("TagId").HasColumnName("tagId");
-                        });
+                    .HasForeignKey(d => d.CategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Blog__categoryId__34C8D9D1");
             });
 
             modelBuilder.Entity<Category>(entity =>
@@ -157,13 +127,13 @@ namespace PRN211_BlogSystem.Models
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.AuthorName)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Comment__authorN__412EB0B6");
+                    .HasConstraintName("FK__Comment__authorN__38996AB5");
 
                 entity.HasOne(d => d.Blog)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.BlogId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Comment__blogId__403A8C7D");
+                    .HasConstraintName("FK__Comment__blogId__37A5467C");
             });
 
             modelBuilder.Entity<Feature>(entity =>
@@ -205,17 +175,6 @@ namespace PRN211_BlogSystem.Models
 
                             j.IndexerProperty<int>("FeatureId").HasColumnName("featureId");
                         });
-            });
-
-            modelBuilder.Entity<Tag>(entity =>
-            {
-                entity.ToTable("Tag");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Title)
-                    .HasMaxLength(255)
-                    .HasColumnName("title");
             });
 
             modelBuilder.Entity<User>(entity =>

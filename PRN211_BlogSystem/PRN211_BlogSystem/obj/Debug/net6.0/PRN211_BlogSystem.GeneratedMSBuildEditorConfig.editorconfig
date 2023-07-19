@@ -16,6 +16,34 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\nocol\Desktop\PRN211\PRN211_BlogSystem\PRN211_BlogSystem
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/nocol/Desktop/PRN211/PRN211_BlogSystem/PRN211_BlogSystem/Views/Admin/BlogsManager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQmxvZ3NNYW5hZ2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nocol/Desktop/PRN211/PRN211_BlogSystem/PRN211_BlogSystem/Views/Blog/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nocol/Desktop/PRN211/PRN211_BlogSystem/PRN211_BlogSystem/Views/Blog/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nocol/Desktop/PRN211/PRN211_BlogSystem/PRN211_BlogSystem/Views/Blog/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nocol/Desktop/PRN211/PRN211_BlogSystem/PRN211_BlogSystem/Views/Blog/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xVcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/nocol/Desktop/PRN211/PRN211_BlogSystem/PRN211_BlogSystem/Views/Home/HomePage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIb21lUGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nocol/Desktop/PRN211/PRN211_BlogSystem/PRN211_BlogSystem/Views/Home/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOb3RGb3VuZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nocol/Desktop/PRN211/PRN211_BlogSystem/PRN211_BlogSystem/Views/User/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

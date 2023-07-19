@@ -1,11 +1,11 @@
-﻿h@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
-@using PRN211_BlogSystem.Models
-@*
+﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
-
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@using PRN211_BlogSystem.Models
+@model Blog
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,17 +14,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="TemplateMo">
+    <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
-    <title>Blog Of Life</title>
+
+    <title>Stand Blog - Post Details</title>
+
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css" />
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="/assets/css/fontawesome.css"  />
-    <link rel="stylesheet" href="/assets/css/owl.css" />
-    <link rel="stylesheet" href="/assets/css/templatemo-stand-blog.css" />
-
+    <link rel="stylesheet" href="/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/assets/css/templatemo-stand-blog.css">
+    <link rel="stylesheet" href="/assets/css/owl.css">
     <!--
 
     TemplateMo 551 Stand Blog
@@ -48,7 +50,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
+                       <li class="nav-item">
                             <a class="nav-link" href="/">
                                 Home
                                 <span class="sr-only">(current)</span>
@@ -57,7 +59,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About Us</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="/Blog/Index">Blog Entries</a>
                         </li>
                         <li class="nav-item">
@@ -81,7 +83,6 @@
                                     <a class="nav-link" href="/User/Login">Login</a>
                                 </li>
                         }
-                       
                     </ul>
                 </div>
             </div>
@@ -90,57 +91,58 @@
 
     <!-- Page Content -->
     <!-- Banner Starts Here -->
-    <div class="main-banner header-text">
-        <div class="container-fluid">
-            <div class="owl-banner owl-carousel">
-                @foreach (Blog b in ViewBag.blogsFive)
-                {
-                    <div class="item">
-                        <img src="assets/images/@b.Image" alt="">
-                        <div class="item-content">
-                            <div class="main-content">
-                                <div class="meta-category">
-                                    <span>@b.Category.Title</span>
-                                </div>
-                                <a href="/Blog/Details?id=@b.Id"><h4>@b.Title</h4></a>
-                                <ul class="post-info">
-                                    <li><a href="#">@b.AuthorNameNavigation.DisplayName</a></li>
-                                    <li><a href="#">@b.CreateAt.ToString("MMMM d, yyyy")</a></li>
-                                    <li><a href="#">@b.NoView</a></li>
-                                </ul>
-                            </div>
+    <div class="heading-page header-text">
+        <section class="page-heading">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-content">
+                            <h4>Post Details</h4>
+                            <h2>Single blog post</h2>
                         </div>
                     </div>
-                }
-              
+                </div>
             </div>
-        </div>
+        </section>
     </div>
+
     <!-- Banner Ends Here -->
 
+    <section class="call-to-action">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section class="blog-posts">
+
+    <section class="blog-posts grid-system">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
                     <div class="all-blog-posts">
                         <div class="row">
-                            @foreach (Blog b in ViewBag.blogsThree)
-                            {
-                                <div class="col-lg-12">
+                            <div class="col-lg-12">
+                                @if (@Model != null)
+                                {
                                     <div class="blog-post">
+
                                         <div class="blog-thumb">
-                                            <img src="assets/images/@b.Image" alt="">
+                                            <img src="/assets/images/@Model.Image" alt="">
                                         </div>
                                         <div class="down-content">
-                                            <span>@b.Category.Title</span>
-                                            <a href="/Blog/Details?id=@b.Id"><h4>@b.Title</h4></a>
+                                            <span>@Model.Category.Title</span>
+                                            <a href="/Blog/Details?id=@Model.Id"><h4>@Model.Title</h4></a>
                                             <ul class="post-info">
-                                                <li><a href="#">@b.AuthorNameNavigation.DisplayName</a></li>
-                                                <li><a href="#">@b.CreateAt.ToString("MMMM d, yyyy")</a></li>
-                                                <li><a href="#">@b.NoView</a></li>
+                                                <li><a href="#">@Model.AuthorNameNavigation.DisplayName</a></li>
+                                                <li><a href="#">@Model.CreateAt.ToString("MMMM d, yyyy")</a></li>
+                                                <li><a href="#">@Model.NoView</a></li>
                                             </ul>
-                                            <p>Stand Blog is a free HTML CSS template for your CMS theme. You can easily adapt or customize it for any kind of CMS or website builder. You are allowed to use it for your business. You are NOT allowed to re-distribute the template ZIP file on any template collection site for the download purpose. <a rel="nofollow" href="https://templatemo.com/contact" target="_parent">Contact TemplateMo</a> for more info. Thank you.</p>
+                                            <p>
+                                                @Model.Content
+                                            </p>
                                             <div class="post-options">
                                                 <div class="row">
                                                     <div class="col-6">
@@ -154,13 +156,59 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            }
-                            <div class="col-lg-12">
-                                <div class="main-button">
-                                    <a href="/Blog/Index">View All Posts</a>
-                                </div>
+                                    <div class="col-lg-12">
+                                        @foreach (Comment c in Model.Comments)
+                                        {
+                                            <div class="sidebar-item">
+                                                <div class="sidebar-heading">
+                                                    <h2>@c.AuthorName</h2>
+                                                    <p>@c.CreateAt.ToString("MMMM d, yyyy")</p>
+                                                </div>
+                                            </div>
+                                            <div class="content">
+                                                <div class="col-lg-12">
+                                                    <fieldset>
+                                                        <p>@c.Content</p>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    @if (Context.Session.GetString("username") != null)
+                                    {
+                                        <div class="col-lg-12">
+                                            <div class="sidebar-item submit-comment">
+                                                <div class="sidebar-heading">
+                                                    <h2>Your comment</h2>
+                                                </div>
+                                                <div class="content">
+                                                    <form id="comment" asp-controller="Comment" asp-action="Add" method="post">
+                                                        <div class="row">
+                                                            <input type="hidden" name="blogId" value="@Model.Id"/>
+                                                            <div class="col-lg-12">
+                                                                <fieldset>
+                                                                    <textarea name="message" rows="6" id="message" placeholder="Type your comment" required=""></textarea>
+                                                                </fieldset>
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                <fieldset>
+                                                                    <button type="submit" id="form-submit" class="main-button">Submit</button>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                @if(Model == null)
+                                {
+                                    <h4>No Blog found!!</h4>
+                                }
+
                             </div>
+                         
                         </div>
                     </div>
                 </div>
@@ -184,7 +232,7 @@
                                             @foreach (Blog b in ViewBag.blogsThree)
                                             {
                                                 <li>
-                                                    <a href="/Blog/Details?id=@b.Id">
+                                                    <a href="post-details.html">
                                                         <h5>@b.Title</h5>
                                                         <span>@b.CreateAt.ToString("MMMM d, yyyy")</span>
                                                     </a>
@@ -201,7 +249,7 @@
                                     </div>
                                     <div class="content">
                                         <ul>
-                                            @foreach(Category c in ViewBag.categories)
+                                            @foreach (Category c in ViewBag.categories)
                                             {
                                                 <li><a href="#">@c.Title</a></li>
                                             }
@@ -242,9 +290,11 @@
         </div>
     </footer>
 
+
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 
     <!-- Additional Scripts -->
     <script src="assets/js/custom.js"></script>
@@ -253,17 +303,19 @@
     <script src="assets/js/isotope.js"></script>
     <script src="assets/js/accordions.js"></script>
 
-    <script language="text/Javascript">
 
+    <script language="text/Javascript">
         cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-        function clearField(t){                   //declaring the array outside of the
-        if(! cleared[t.id]){                      // function makes it static and global
-            cleared[t.id] = 1;  // you could use true and false, but that's more typing
-            t.value='';         // with more chance of typos
-            t.style.color='#fff';
+        function clearField(t) {                   //declaring the array outside of the
+            if (!cleared[t.id]) {                      // function makes it static and global
+                cleared[t.id] = 1;  // you could use true and false, but that's more typing
+                t.value = '';         // with more chance of typos
+                t.style.color = '#fff';
             }
         }
     </script>
 
+
 </body>
+
 </html>

@@ -1,4 +1,4 @@
--- create database PRN211_BlogSystem
+ -- create database PRN211_BlogSystem
 
 use PRN211_BlogSystem
 create table [User](
@@ -36,44 +36,29 @@ create table Role_Feature(
 	featureId int foreign key references [Feature](id) ,
 	constraint PK_Role_Feature primary key(roleId,featureId)
 )
-
-create table [Blog](
-	id int identity(1,1) not null,
-	authorName varchar(100) foreign key references [User](username) not null,
-	[image] varchar(255) not null,
-	title nvarchar(255) not null,
-	metaTitle nvarchar(255) not null,
-	summary nvarchar(255) not null,
-	content text not null,
-	createAt datetime not null,
-	updatedAt datetime not null,
-	noView int not null,
-	constraint PK_Blog primary key(id)
-)
-
-create table [Tag](
-	id int identity (1,1) not null,
-	title nvarchar(255) not null,
-	constraint PK_Tag primary key(id)
-)
-
-create table Blog_Tag(
-	blogId int foreign key references Blog(id)  not null,
-	tagId int foreign key references Tag(id) not null,
-	constraint PK_Blog_Tag primary key (blogId,tagId)
-)
-
 create table Category(
 	id int identity(1,1) not null,
 	title nvarchar(255) not null,
 	constraint PK_Category primary key (id) 
 )
 
-create table Blog_Category(
-	blogId int foreign key references Blog(id) not null,
-	categoryId int foreign key references Category(id) not null,
-	constraint PK_Blog_Category primary key (blogId,categoryId)
+create table [Blog](
+	id int identity(1,1) not null,
+	authorName varchar(100) foreign key references [User](username) not null,
+	[image] varchar(255),
+	title nvarchar(255) not null,
+	metaTitle nvarchar(255) ,
+	summary nvarchar(255) not null,
+	content text not null,
+	createAt datetime not null,
+	updatedAt datetime not null,
+	noView int ,
+	categoryId int not null foreign key references [Category](id),
+	constraint PK_Blog primary key(id)
+
 )
+
+
 
 create table Comment(
 	id int identity(1,1) not null,

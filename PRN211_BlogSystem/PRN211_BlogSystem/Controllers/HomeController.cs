@@ -18,27 +18,29 @@ namespace PRN211_BlogSystem.Controllers
 					.OrderBy(b => b.NoView)
 					.Take(5)
 					.Include(b => b.AuthorNameNavigation)
+                    .Include(b => b.Category)
                     .ToList();
 				ViewBag.blogsFive = blogsFive;
 				var blogsThree = context.Blogs
 					.OrderBy(b => b.NoView)
 					.Take(3)
                     .Include(b => b.AuthorNameNavigation)
-					.Include(b => b.Tags)
+                    .Include(b => b.Category)
                     .ToList();
 				ViewBag.blogsThree = blogsThree;
 
 				var categories = context.Categories.ToList();
 				ViewBag.categories = categories;
-
-				var tags = context.Tags
-					.Take(6)
-					.ToList();
-				ViewBag.tags = tags;
 			}
 			return View();
 		}
 
-		
-	}
+        public ActionResult NotFound()
+        {
+            return View();
+        }
+
+
+
+    }
 }

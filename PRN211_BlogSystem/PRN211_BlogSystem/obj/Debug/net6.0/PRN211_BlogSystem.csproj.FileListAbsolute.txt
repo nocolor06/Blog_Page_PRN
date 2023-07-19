@@ -61,6 +61,6 @@ C:\Users\nocol\Desktop\PRN211\PRN211_BlogSystem\PRN211_BlogSystem\obj\Debug\net6
 C:\Users\nocol\Desktop\PRN211\PRN211_BlogSystem\PRN211_BlogSystem\obj\Debug\net6.0\PRN211_BlogSystem.genruntimeconfig.cache
 C:\Users\nocol\Desktop\PRN211\PRN211_BlogSystem\PRN211_BlogSystem\obj\Debug\net6.0\ref\PRN211_BlogSystem.dll
 C:\Users\nocol\Desktop\PRN211\PRN211_BlogSystem\PRN211_BlogSystem\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\nocol\Desktop\PRN211\PRN211_BlogSystem\PRN211_BlogSystem\bin\Debug\net6.0\PRN211_BlogSystem.staticwebassets.runtime.json
 C:\Users\nocol\Desktop\PRN211\PRN211_BlogSystem\PRN211_BlogSystem\obj\Debug\net6.0\PRN211_BlogSystem.RazorAssemblyInfo.cache
 C:\Users\nocol\Desktop\PRN211\PRN211_BlogSystem\PRN211_BlogSystem\obj\Debug\net6.0\PRN211_BlogSystem.RazorAssemblyInfo.cs
-C:\Users\nocol\Desktop\PRN211\PRN211_BlogSystem\PRN211_BlogSystem\bin\Debug\net6.0\PRN211_BlogSystem.staticwebassets.runtime.json
