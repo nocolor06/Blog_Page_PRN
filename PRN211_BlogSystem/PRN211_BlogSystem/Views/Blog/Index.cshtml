@@ -68,7 +68,7 @@
                         </li>
                         @if (Context.Session.GetString("role") != null && Context.Session.GetString("role") == "Admin")
                         {
-                                <li class="nav-item active">
+                                <li class="nav-item">
                                     <a class="nav-link" href="/Admin/BlogsManager">Admin Manage</a>
                                 </li>
                         }
@@ -80,7 +80,7 @@
                         }
                         else
                         {
-                                <li class="nav-item active">
+                                <li class="nav-item">
                                     <a class="nav-link" href="/User/Login">Login</a>
                                 </li>
                         }

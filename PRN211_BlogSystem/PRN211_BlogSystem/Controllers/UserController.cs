@@ -49,7 +49,46 @@ namespace PRN211_BlogSystem.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("username");
+            HttpContext.Session.Remove("role");
+
             return RedirectToAction("Index", "Blog");
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Register(User registerUser)
+        {
+            using(PRN211_BlogSystemContext context = new PRN211_BlogSystemContext())
+            {
+                User findUser = context.Users.Where(u => u.Username.Equals(registerUser.Username)).FirstOrDefault();
+                if(findUser == null)
+                {
+                    registerUser.RegisterAt = DateTime.Now;
+                    registerUser.LastLogin = DateTime.Now;
+
+                    string sqlInsertUser = "INSERT INTO [User](username,password,displayName,email,dob,phoneNumber,registerAt,lastLogin)" +
+                        "\n VALUES ({0},{1},{2},{3},{4},{5},{6},{7})";
+                    context.Database.ExecuteSqlRaw(sqlInsertUser, registerUser.Username, registerUser.Password,registerUser.DisplayName,
+                        registerUser.Email,registerUser.Dob.Year+"-"+registerUser.Dob.Month+"-"+registerUser.Dob.Day,registerUser.PhoneNumber,
+                        registerUser.RegisterAt,registerUser.LastLogin);
+                    context.SaveChanges();
+                    string sqlDeleteComments = "INSERT INTO User_Role(username,roleId) VALUES ({0},{1})";
+                    context.Database.ExecuteSqlRaw(sqlDeleteComments, registerUser.Username,2);
+                    context.SaveChanges();
+                    HttpContext.Session.SetString("username", registerUser.Username);
+                    HttpContext.Session.SetString("role", "Customer");
+                    return RedirectToAction("Index", "Blog");
+                }
+                else
+                {
+                    ViewBag.errorRegister = "Username is taken";
+                    return View(registerUser);
+                }
+            }
+            return View();
         }
     }
 }
